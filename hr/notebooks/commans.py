@@ -25,24 +25,7 @@ columns = ["cost_center_ref_id",
 "profit_center_1_name",       
 "pk_costcent_key"]  
 
-def scdexpr(columns,primaryKey,batch_id,start_time):
-  dict={}
-  compositeKey = ''
-  for col in primaryKey:
-    compositeKey += "t."+col+","
-  expr2 = "concat("+compositeKey+")"
-  compositeKeyExpr = ''.join(expr2.rsplit(',', 1))
-  
-  condition = compositeKeyExpr + "=s.MergeKey"
-  print(condition)
-  for col in columns:
-    dict[col] = "s." + col
-    dict["batch_id"] = batch_id
-    dict["rec_start_datetime"]= start_time
-    dict["rec_end_datetime"] = "9999-12-31"
-    dict["rec_active_status"] = "1"
-  return (dict,condition)
-    
+ 
 
   
 
